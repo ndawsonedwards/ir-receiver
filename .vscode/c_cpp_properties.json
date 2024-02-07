@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "name": "STM32",
+      "includePath": [
+        "Core/Inc",
+        "Core/Src/system",
+        "Drivers/CMSIS/Device/ST/STM32L0xx/Include",
+        "Drivers/CMSIS/Include",
+        "Drivers/STM32L0xx_HAL_Driver/Inc",
+        "Drivers/STM32L0xx_HAL_Driver/Inc/Legacy",
+        "Drivers/STM32L0xx_HAL_Driver/inc"
+      ],
+      "defines": [
+        "STM32L031xx",
+        "USE_HAL_DRIVER"
+      ],
+      "compilerPath": "C:\\USERS\\NICKD\\APPDATA\\ROAMING\\CODE\\USER\\GLOBALSTORAGE\\BMD.STM32-FOR-VSCODE\\@XPACK-DEV-TOOLS\\ARM-NONE-EABI-GCC\\13.2.1-1.1.1\\.CONTENT\\BIN\\ARM-NONE-EABI-GCC.EXE"
+    }
+  ],
+  "version": 4
+}

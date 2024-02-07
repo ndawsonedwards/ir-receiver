@@ -22,7 +22,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "include.h"
-#include "system/reset_reason.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -98,13 +97,7 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-    TargetResetReason reason;
-    Error error = TargetResetReason_Get(&reason);
-    if (error != Error_None){
-      Trace_PrintLine("Unable to retrieve Reset Reason");
-    }
 
-    Trace_PrintLine("Reset Reason: %s", TargetResetReason_GetName(reason));
 
   /* USER CODE END 2 */
 
