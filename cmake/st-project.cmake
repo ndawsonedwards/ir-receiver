@@ -70,6 +70,7 @@ target_sources(
     "Core\\Src\\syscalls.c"
     "Core\\Src\\sysmem.c"
     "Core\\Src\\system_stm32l0xx.c"
+    "Core\\Src\\system\\reset_reason.c"
     "Core\\Startup\\startup_stm32l031k6tx.s"
     "Drivers\\STM32L0xx_HAL_Driver\\Src\\stm32l0xx_hal_cortex.c"
     "Drivers\\STM32L0xx_HAL_Driver\\Src\\stm32l0xx_hal_dma.c"
