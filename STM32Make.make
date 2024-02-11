@@ -41,7 +41,6 @@ Core/Src/stm32l0xx_hal_msp.c \
 Core/Src/stm32l0xx_it.c \
 Core/Src/syscalls.c \
 Core/Src/sysmem.c \
-Core/Src/system/reset_reason.c \
 Core/Src/system_stm32l0xx.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.c \
@@ -60,7 +59,10 @@ Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rcc_ex.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart.c \
-Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c
+Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c \
+Modules/rebar/platform/stm32/gpio.c \
+Modules/rebar/platform/stm32/reset_reason.c \
+Modules/rebar/platform/stm32/trace.c
 
 
 CPP_SOURCES = \

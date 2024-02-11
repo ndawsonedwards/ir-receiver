@@ -22,7 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "include.h"
-
+#include "gpio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -63,6 +63,17 @@ static void MX_USART2_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+
+typedef enum {
+
+  GpioPin_Led
+
+}GpioPin;
+
+static GpioPinContext _pinContext[1] = {
+  { .pinEnum = GpioPin_Led, .port = LED_GPIO_Port, .pin  =LED_Pin }
+};
+  
 /* USER CODE END 0 */
 
 /**
@@ -99,7 +110,10 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
 
-
+  Error error = Gpio_Initialize(_pinContext, ARRAY_SIZE(_pinContext));
+  if (error) {
+    //do something
+  }
   /* USER CODE END 2 */
 
   /* Infinite loop */

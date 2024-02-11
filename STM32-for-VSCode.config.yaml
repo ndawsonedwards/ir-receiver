@@ -92,6 +92,7 @@ sourceFiles:
   - Core/Src/**
   - Core/Lib/**
   - Core/Srx/system/**
+  - Modules/rebar/platform/stm32/**
 
 
 # When no makefile is present it will show a warning pop-up.
