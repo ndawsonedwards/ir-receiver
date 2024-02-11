@@ -1,0 +1,3 @@
+[submodule "Modules/rebar"]
+	path = Modules/rebar
+	url = https://github.com/ndawsonedwards/rebar.git

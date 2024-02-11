@@ -138,7 +138,9 @@ C_INCLUDES =  \
 -IDrivers/CMSIS/Include \
 -IDrivers/STM32L0xx_HAL_Driver/Inc \
 -IDrivers/STM32L0xx_HAL_Driver/Inc/Legacy \
--IDrivers/STM32L0xx_HAL_Driver/inc
+-IDrivers/STM32L0xx_HAL_Driver/inc \
+-IModules/rebar/inc \
+-IModules/rebar/platform/stm32
 
 
 

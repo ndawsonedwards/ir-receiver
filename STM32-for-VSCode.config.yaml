@@ -79,6 +79,8 @@ includeDirectories:
   - Core/Src/**
   - Core/Lib/**
   - Core/Srx/system/**
+  - Modules/rebar/inc/**
+  - Modules/rebar/platform/**
 
 # Files that should be included in the compilation.
 # If a CubeMX makefile is present it will automatically include the  c and cpp/cxx files from that makefile.

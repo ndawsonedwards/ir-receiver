@@ -9,7 +9,9 @@
         "Drivers/CMSIS/Include",
         "Drivers/STM32L0xx_HAL_Driver/Inc",
         "Drivers/STM32L0xx_HAL_Driver/Inc/Legacy",
-        "Drivers/STM32L0xx_HAL_Driver/inc"
+        "Drivers/STM32L0xx_HAL_Driver/inc",
+        "Modules/rebar/inc",
+        "Modules/rebar/platform/stm32"
       ],
       "defines": [
         "STM32L031xx",
