@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "include.h"
 #include "gpio.h"
+#include "trace.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -66,7 +67,7 @@ static void MX_USART2_UART_Init(void);
 
 typedef enum {
 
-  GpioPin_Led
+  GpioPin_Led = 0
 
 }GpioPin;
 
@@ -114,6 +115,12 @@ int main(void)
   if (error) {
     //do something
   }
+
+  error = Trace_Initialize(&huart2, TraceLevel_Debug);
+  if (error) {
+    //do something
+  }
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -121,6 +128,8 @@ int main(void)
   while (1)
   {
     Gpio_Toggle(GpioPin_Led);
+    Trace_PrintLine(TraceLevel_Debug, "Toggling Pin");
+
     HAL_Delay(1000);
     /* USER CODE END WHILE */
 
