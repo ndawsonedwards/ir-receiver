@@ -138,8 +138,8 @@ int main(void)
     if (elapsed >= 1000) {
 
       Gpio_Toggle(GpioPin_Led);
-      Trace_PrintLine(TraceLevel_Debug, "Toggling Pin");
-      Trace_PrintLine(TraceLevel_Debug, "Now = %d, elapsed = %d", now, elapsed);
+      TRACE_DEBUG("Toggling Pin");
+      TRACE_DEBUG("Now = %d, elapsed = %d", now, elapsed);
       SystemTime_GetTimeStampMs(&now);
     }
 
