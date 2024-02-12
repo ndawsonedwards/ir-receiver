@@ -70,7 +70,7 @@ typedef enum {
 
 }GpioPin;
 
-static GpioPinContext _pinContext[1] = {
+static GpioPinContext _pinContext[] = {
   { .pinEnum = GpioPin_Led, .port = LED_GPIO_Port, .pin  =LED_Pin }
 };
   
@@ -120,7 +120,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+    Gpio_Toggle(GpioPin_Led);
+    HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
