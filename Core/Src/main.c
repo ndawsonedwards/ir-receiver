@@ -24,6 +24,7 @@
 #include "include.h"
 #include "gpio.h"
 #include "trace.h"
+#include "system_time.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -120,17 +121,30 @@ int main(void)
   if (error) {
     //do something
   }
-
+    
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  TimeStamp now = 0;
+  TimeStamp elapsed = 0;
+  
   while (1)
   {
-    Gpio_Toggle(GpioPin_Led);
-    Trace_PrintLine(TraceLevel_Debug, "Toggling Pin");
 
-    HAL_Delay(1000);
+    SystemTime_GetMillisecondsSince(now, &elapsed);
+    
+
+    if (elapsed >= 1000) {
+
+      Gpio_Toggle(GpioPin_Led);
+      Trace_PrintLine(TraceLevel_Debug, "Toggling Pin");
+      Trace_PrintLine(TraceLevel_Debug, "Now = %d, elapsed = %d", now, elapsed);
+      SystemTime_GetTimeStampMs(&now);
+    }
+
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

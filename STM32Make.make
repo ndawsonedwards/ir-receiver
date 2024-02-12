@@ -62,6 +62,7 @@ Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c \
 Modules/rebar/platform/stm32/gpio.c \
 Modules/rebar/platform/stm32/reset_reason.c \
+Modules/rebar/platform/stm32/system_time.c \
 Modules/rebar/platform/stm32/trace.c
 
 
