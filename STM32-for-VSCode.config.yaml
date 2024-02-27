@@ -73,14 +73,13 @@ excludes:
 # If a CubeMX makefile is present it will automatically include the include directories from that makefile.
 includeDirectories: 
   - Inc/**
+  - Src/**
   - Core/Inc/**
   - Core/Lib/**
-  - Src/**
-  - Core/Src/**
-  - Core/Lib/**
-  - Core/Srx/system/**
-  - Modules/rebar/inc/**
-  - Modules/rebar/platform/**
+  - Drivers/inc/**
+  - Modules/rebar/**
+
+  
 
 # Files that should be included in the compilation.
 # If a CubeMX makefile is present it will automatically include the  c and cpp/cxx files from that makefile.
@@ -91,8 +90,8 @@ sourceFiles:
   - Src/**
   - Core/Src/**
   - Core/Lib/**
-  - Core/Srx/system/**
   - Modules/rebar/platform/stm32/**
+  - Modules/rebar/collections/**
 
 
 # When no makefile is present it will show a warning pop-up.

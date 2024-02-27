@@ -37,6 +37,7 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Core/Src/main.c \
+Core/Src/sensors/ir-sensor.c \
 Core/Src/stm32l0xx_hal_msp.c \
 Core/Src/stm32l0xx_it.c \
 Core/Src/syscalls.c \
@@ -60,7 +61,11 @@ Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart.c \
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c \
-Modules/rebar/platform/stm32/gpio.c \
+Modules/rebar/collections/buffer.c \
+Modules/rebar/collections/linked-list.c \
+Modules/rebar/collections/ring-buffer.c \
+Modules/rebar/collections/stack.c \
+Modules/rebar/platform/stm32/gpio/gpio-interrupt.c \
 Modules/rebar/platform/stm32/reset_reason.c \
 Modules/rebar/platform/stm32/system_time.c \
 Modules/rebar/platform/stm32/trace.c
@@ -142,8 +147,21 @@ C_INCLUDES =  \
 -IDrivers/STM32L0xx_HAL_Driver/Inc \
 -IDrivers/STM32L0xx_HAL_Driver/Inc/Legacy \
 -IDrivers/STM32L0xx_HAL_Driver/inc \
--IModules/rebar/inc \
--IModules/rebar/platform/stm32
+-IModules/rebar/build/_deps/googletest-src/googlemock/include/gmock \
+-IModules/rebar/build/_deps/googletest-src/googlemock/include/gmock/internal \
+-IModules/rebar/build/_deps/googletest-src/googlemock/include/gmock/internal/custom \
+-IModules/rebar/build/_deps/googletest-src/googlemock/test \
+-IModules/rebar/build/_deps/googletest-src/googletest/include/gtest \
+-IModules/rebar/build/_deps/googletest-src/googletest/include/gtest/internal \
+-IModules/rebar/build/_deps/googletest-src/googletest/include/gtest/internal/custom \
+-IModules/rebar/build/_deps/googletest-src/googletest/samples \
+-IModules/rebar/build/_deps/googletest-src/googletest/src \
+-IModules/rebar/build/_deps/googletest-src/googletest/test \
+-IModules/rebar/collections \
+-IModules/rebar/include \
+-IModules/rebar/math \
+-IModules/rebar/platform/stm32 \
+-IModules/rebar/platform/stm32/gpio
 
 
 

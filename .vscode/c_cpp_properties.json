@@ -10,8 +10,21 @@
         "Drivers/STM32L0xx_HAL_Driver/Inc",
         "Drivers/STM32L0xx_HAL_Driver/Inc/Legacy",
         "Drivers/STM32L0xx_HAL_Driver/inc",
-        "Modules/rebar/inc",
-        "Modules/rebar/platform/stm32"
+        "Modules/rebar/build/_deps/googletest-src/googlemock/include/gmock",
+        "Modules/rebar/build/_deps/googletest-src/googlemock/include/gmock/internal",
+        "Modules/rebar/build/_deps/googletest-src/googlemock/include/gmock/internal/custom",
+        "Modules/rebar/build/_deps/googletest-src/googlemock/test",
+        "Modules/rebar/build/_deps/googletest-src/googletest/include/gtest",
+        "Modules/rebar/build/_deps/googletest-src/googletest/include/gtest/internal",
+        "Modules/rebar/build/_deps/googletest-src/googletest/include/gtest/internal/custom",
+        "Modules/rebar/build/_deps/googletest-src/googletest/samples",
+        "Modules/rebar/build/_deps/googletest-src/googletest/src",
+        "Modules/rebar/build/_deps/googletest-src/googletest/test",
+        "Modules/rebar/collections",
+        "Modules/rebar/include",
+        "Modules/rebar/math",
+        "Modules/rebar/platform/stm32",
+        "Modules/rebar/platform/stm32/gpio"
       ],
       "defines": [
         "STM32L031xx",

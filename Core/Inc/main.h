@@ -67,6 +67,8 @@ void Error_Handler(void);
 #define SERIAL_RX_GPIO_Port GPIOA
 #define LED_Pin GPIO_PIN_3
 #define LED_GPIO_Port GPIOB
+#define IR_SENSOR_RX_Pin GPIO_PIN_4
+#define IR_SENSOR_RX_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

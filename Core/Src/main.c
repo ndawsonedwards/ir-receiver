@@ -21,10 +21,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "include.h"
-#include "gpio.h"
+#include "rebar.h"
 #include "trace.h"
 #include "system_time.h"
+#include "gpio-interrupt.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -66,16 +66,32 @@ static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN 0 */
 
 
-typedef enum {
 
-  GpioPin_Led = 0
 
-}GpioPin;
 
-static GpioPinContext _pinContext[] = {
-  { .pinEnum = GpioPin_Led, .port = LED_GPIO_Port, .pin  =LED_Pin }
-};
-  
+#define MAX_GPIO_RISING_INTERRUPT_PINS	1
+static GpioInterruptContext _risingInterruptContext[MAX_GPIO_RISING_INTERRUPT_PINS];
+
+#define MAX_GPIO_FALLING_INTERRUPT_PINS	1
+static GpioInterruptContext _fallingInterruptContext[MAX_GPIO_FALLING_INTERRUPT_PINS];
+
+
+
+static Error App_Initialize(void) {
+
+	Error error = Trace_Initialize(&huart2, TraceLevel_Debug);
+	if (error) {
+	//do something
+	}
+
+	error = GpioInterrupt_Initialize(_risingInterruptContext, ARRAY_SIZE(_risingInterruptContext),
+									_fallingInterruptContext, ARRAY_SIZE(_fallingInterruptContext));
+	if (error) {
+		//do something
+	}
+
+	return Error_None;
+}
 /* USER CODE END 0 */
 
 /**
@@ -111,17 +127,9 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
+  
+	App_Initialize();
 
-  Error error = Gpio_Initialize(_pinContext, ARRAY_SIZE(_pinContext));
-  if (error) {
-    //do something
-  }
-
-  error = Trace_Initialize(&huart2, TraceLevel_Debug);
-  if (error) {
-    //do something
-  }
-    
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -132,22 +140,21 @@ int main(void)
   while (1)
   {
 
-    SystemTime_GetMillisecondsSince(now, &elapsed);
-    
+	SystemTime_GetMillisecondsSince(now, &elapsed);
+	
 
-    if (elapsed >= 1000) {
+	if (elapsed >= 1000) {
 
-      Gpio_Toggle(GpioPin_Led);
-      TRACE_DEBUG("Toggling Pin");
-      TRACE_DEBUG("Now = %d, elapsed = %d", now, elapsed);
-      SystemTime_GetTimeStampMs(&now);
-    }
-
+    HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	  TRACE_DEBUG("Now = %d, elapsed = %d", now, elapsed);
+	  SystemTime_GetTimeStampMs(&now);
+	}
 
 
-    /* USER CODE END WHILE */
 
-    /* USER CODE BEGIN 3 */
+	/* USER CODE END WHILE */
+
+	/* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -175,13 +182,13 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
-    Error_Handler();
+	Error_Handler();
   }
 
   /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+							  |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
@@ -189,13 +196,13 @@ void SystemClock_Config(void)
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
-    Error_Handler();
+	Error_Handler();
   }
   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2;
   PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
-    Error_Handler();
+	Error_Handler();
   }
 }
 
@@ -225,18 +232,18 @@ static void MX_TIM2_Init(void)
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
   {
-    Error_Handler();
+	Error_Handler();
   }
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
   if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
   {
-    Error_Handler();
+	Error_Handler();
   }
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
   {
-    Error_Handler();
+	Error_Handler();
   }
   /* USER CODE BEGIN TIM2_Init 2 */
 
@@ -270,18 +277,18 @@ static void MX_TIM21_Init(void)
   htim21.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim21) != HAL_OK)
   {
-    Error_Handler();
+	Error_Handler();
   }
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
   if (HAL_TIM_ConfigClockSource(&htim21, &sClockSourceConfig) != HAL_OK)
   {
-    Error_Handler();
+	Error_Handler();
   }
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim21, &sMasterConfig) != HAL_OK)
   {
-    Error_Handler();
+	Error_Handler();
   }
   /* USER CODE BEGIN TIM21_Init 2 */
 
@@ -316,7 +323,7 @@ static void MX_USART2_UART_Init(void)
   huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
   if (HAL_UART_Init(&huart2) != HAL_OK)
   {
-    Error_Handler();
+	Error_Handler();
   }
   /* USER CODE BEGIN USART2_Init 2 */
 
@@ -349,6 +356,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : IR_SENSOR_RX_Pin */
+  GPIO_InitStruct.Pin = IR_SENSOR_RX_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(IR_SENSOR_RX_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
@@ -385,7 +398,7 @@ void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+	 ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
